@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent body scroll completely - relying on Layout container scroll */
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* PiteuTracker Design System - Mobile-First Green Theme */
+
+@layer base {
+  :root {
+    /* Background & Surfaces */
+    --background: 210 20% 98%;
+    --foreground: 220 13% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 9%;
+
+    /* Green Primary Theme - #22C55E */
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 142 71% 40%;
+    --primary-light: 142 77% 73%;
+
+    /* Secondary - #86EFAC */
+    --secondary: 142 77% 73%;
+    --secondary-foreground: 220 13% 9%;
+
+    /* Neutrals */
+    --muted: 220 13% 95%;
+    --muted-foreground: 220 9% 42%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 77% 90%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 38 92% 90%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 142 71% 45%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 13% 9%;
+    --sidebar-primary: 142 71% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 142 77% 95%;
+    --sidebar-accent-foreground: 220 13% 9%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 142 71% 45%;
+
+    /* Bottom Navigation */
+    --bottom-nav: 0 0% 100%;
+    --bottom-nav-foreground: 220 9% 42%;
+    --bottom-nav-active: 142 71% 45%;
+  }
+
+  .dark {
+    --background: 220 13% 9%;
+    --foreground: 210 20% 98%;
+
+    --card: 220 13% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 13% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 142 71% 50%;
+    --primary-light: 142 71% 25%;
+
+    --secondary: 142 77% 25%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 13% 15%;
+    --muted-foreground: 220 9% 60%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 71% 15%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 38 92% 15%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --ring: 142 71% 45%;
+
+    --sidebar-background: 220 13% 10%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 142 71% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 13% 15%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 220 13% 18%;
+    --sidebar-ring: 142 71% 45%;
+
+    --bottom-nav: 220 13% 12%;
+    --bottom-nav-foreground: 220 9% 60%;
+    --bottom-nav-active: 142 71% 45%;
+  }
+}
+
+@layer base {
+  html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    touch-action: manipulation;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  /* Safe area for mobile devices */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+@layer components {
+  /* Mobile-first card style - flat, clean */
+  .card-mobile {
+    @apply bg-card rounded-xl border-0;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  /* Touch-friendly tap targets */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Bottom navigation spacing */
+  .pb-bottom-nav {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Hide scrollbar for cleaner mobile experience */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
