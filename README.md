@@ -1,73 +1,87 @@
-# Welcome to your Lovable project
+# PiteuTracker AI
 
-## Project info
+Aplicação web para registo alimentar e acompanhamento de macros (calorias, proteína, hidratos e gordura), com funcionalidades assistidas por IA.
 
-**URL**: https://lovable.dev/projects/5b54b814-8710-4773-a6c1-22590549b200
+**Deploy (Vercel):** https://piteu-tracker-app.vercel.app/
 
-## How can I edit this code?
+## Funcionalidades
 
-There are several ways of editing your application.
+- Registo de refeições por foto (Snap Log)
+- Registo manual (alimento/refeição + quantidade)
+- Registo por voz
+- Metas diárias de calorias e macros
+- Diário alimentar com histórico por data
+- Relatórios e gráficos de progresso
+- NutriCoach (perguntas e respostas sobre nutrição) e Plano IA (geração de plano alimentar) via funções no Supabase
 
-**Use Lovable**
+## Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5b54b814-8710-4773-a6c1-22590549b200) and start prompting.
+- Vite + React + TypeScript
+- Tailwind CSS + shadcn/ui (Radix UI)
+- Supabase (Auth, Database, Storage e Edge Functions)
+- React Router + TanStack Query
+- Vercel (deploy)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Como correr localmente
 
-**Use your preferred IDE**
+### Pré-requisitos
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (LTS recomendado)
+- Uma conta/projeto no Supabase (para Auth/DB)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Instalação
 
-Follow these steps:
+```bash
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Cria um ficheiro `.env` na raiz do projeto com as variáveis abaixo (não publiques o `.env`):
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+VITE_SUPABASE_URL=https://seu-projeto.supabase.co
+VITE_SUPABASE_ANON_KEY=sua-chave-anonima
+VITE_SUPABASE_PUBLISHABLE_KEY=sua-chave-anonima
 
-# Step 3: Install the necessary dependencies.
-npm i
+VITE_NUTRITIONIX_APP_ID=seu-app-id
+VITE_NUTRITIONIX_APP_KEY=sua-app-key
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Notas:
+
+- No Supabase, a chave “anon public” pode ser usada como `VITE_SUPABASE_ANON_KEY` e também como `VITE_SUPABASE_PUBLISHABLE_KEY`.
+- As chaves da Nutritionix são opcionais, mas necessárias para partes do fluxo de pesquisa/validação de alimentos.
+
+Depois, inicia o servidor de desenvolvimento:
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
 
-**Use GitHub Codespaces**
+## Estrutura do projeto (alto nível)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `src/pages`: páginas (Dashboard, Log, Reports, etc.)
+- `src/components`: componentes reutilizáveis e modais (ex.: registo manual, drawer, etc.)
+- `src/providers`: contextos globais (ex.: nutrição)
+- `src/services`: integrações externas (ex.: IA, Nutritionix)
+- `src/lib`: clientes e utilitários (ex.: Supabase)
 
-## What technologies are used for this project?
+## IA (Plano e Coach)
 
-This project is built with:
+As funcionalidades de IA são chamadas via Supabase Edge Functions.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Guia de configuração: `GROQ_SETUP_GUIDE.md`
+- Notas de plano alimentar: `AI_MEAL_PLAN.md`
 
-## How can I deploy this project?
+## Segurança
 
-Simply open [Lovable](https://lovable.dev/projects/5b54b814-8710-4773-a6c1-22590549b200) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- Nunca comites `.env` nem chaves/tokens.
+- Para repositórios públicos, usa um ficheiro de exemplo (ex.: `.env.example`) com nomes de variáveis e valores fictícios.
