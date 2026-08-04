@@ -81,7 +81,3 @@ As funcionalidades de IA são chamadas via Supabase Edge Functions.
 - Guia de configuração: `GROQ_SETUP_GUIDE.md`
 - Notas de plano alimentar: `AI_MEAL_PLAN.md`
 
-## Segurança
-
-- Nunca comites `.env` nem chaves/tokens.
-- Para repositórios públicos, usa um ficheiro de exemplo (ex.: `.env.example`) com nomes de variáveis e valores fictícios.
